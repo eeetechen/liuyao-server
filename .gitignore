@@ -1,0 +1,12 @@
+# 编译产物
+/liuyao-server
+/server
+*.exe
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# 系统
+.DS_Store

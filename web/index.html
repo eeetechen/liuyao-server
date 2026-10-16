@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1a1614">
+<title>六爻排盘 · 京房纳甲</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">易</span>
+      <div class="brand-text">
+        <h1>六爻排盘</h1>
+        <p>京房纳甲 · 旺相休囚死 · 暗动 · 用神四神 · 三合六合六冲 · 三刑六害</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <!-- 左侧：输入 -->
+    <section class="panel input-panel">
+      <div id="manualPane" class="pane active">
+        <h2>起卦</h2>
+        <p class="hint">逐爻选择阴阳与动静，自下而上（初爻在最下方）。勾选「动爻」即为老阳/老阴。</p>
+        <div class="manual-list" id="manualList"></div>
+      </div>
+
+      <div class="field">
+        <label for="yongShen">用神</label>
+        <select id="yongShen">
+          <option value="妻财">妻财 —— 求财、买卖、投资、婚姻（男占妻）</option>
+          <option value="官鬼">官鬼 —— 工作、事业、功名、官讼、疾病</option>
+          <option value="父母">父母 —— 学业、考试、文书、房产、长辈、上级</option>
+          <option value="子孙">子孙 —— 子女、生育、平安、解忧、宠物</option>
+          <option value="兄弟">兄弟 —— 同辈、合作、竞争、借贷</option>
+        </select>
+        <!-- 选中用神的取用参考，常驻显示（下拉收起时也能看到） -->
+        <div class="yong-hint" id="yongHint"></div>
+      </div>
+      <div class="field">
+        <label for="atTime">起卦时间</label>
+        <input id="atTime" type="datetime-local">
+      </div>
+      <div class="field row">
+        <div>
+          <label for="boundary">换日口径</label>
+          <select id="boundary">
+            <option value="zi">晚子时算次日</option>
+            <option value="midnight">子正换日</option>
+          </select>
+        </div>
+        <div>
+          <label for="tz">时区</label>
+          <select id="tz">
+            <option value="Asia/Shanghai">北京 UTC+8</option>
+            <option value="Asia/Taipei">台北 UTC+8</option>
+            <option value="Asia/Hong_Kong">香港 UTC+8</option>
+            <option value="Asia/Tokyo">东京 UTC+9</option>
+            <option value="America/New_York">纽约</option>
+            <option value="Europe/London">伦敦</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn primary wide" id="btnChart">开 始 排 盘</button>
+      <p class="err" id="errBox"></p>
+    </section>
+
+    <!-- 右侧：结果 -->
+    <section class="panel result-panel">
+      <div id="placeholder" class="placeholder">
+        <div class="ph-icon">☯</div>
+        <p>排盘结果将显示在这里</p>
+        <span>含旺相休囚死、暗动、用神四神、三合六合六冲、三刑六害</span>
+      </div>
+      <div id="result" class="result hidden"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Go 服务端 · 前后端分离 · 结果仅供传统文化研究参考</span>
+  </footer>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
