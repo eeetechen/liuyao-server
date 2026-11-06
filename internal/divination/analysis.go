@@ -266,13 +266,18 @@ func calcBianGua(mark string, changing []int) *BianGua {
 	}
 	gongWuXing := BaGuaWuXing[gongIdx]
 
+	// 变卦六亲按「本卦所伏之宫」论：以本卦卦宫五行取六亲，
+	// 而非变卦自身卦宫。（与本文件 yaos[].changedLiuQin 口径一致）
+	benShi := setShiYao(mark)
+	benGong := palace(mark, benShi.Shi)
+	benGongWuXing := BaGuaWuXing[indexOf(BaGua[:], benGong)]
+
 	naJia := getNaJia(bMark)
 	qin := make([]string, 6)
 	for i := range naJia {
-		qin[i] = GetLiuQin(gongWuXing, naJia[i].WuXing)
+		qin[i] = GetLiuQin(benGongWuXing, naJia[i].WuXing)
 	}
 
-	// 变卦六亲按「本卦所伏之宫」论，此处同时给出变卦自身卦宫
 	bg := &BianGua{
 		Mark:     bMark,
 		Name:     Gua64[bMark],
@@ -290,6 +295,9 @@ func calcBianGua(mark string, changing []int) *BianGua {
 		bg.Type = "六冲"
 	case IsLiuHe(bMark):
 		bg.Type = "六合"
+	default:
+		// 非六冲六合者，尚可能是游魂 / 归魂；与本卦口径保持一致
+		bg.Type = soul(bMark)
 	}
 	return bg
 }
